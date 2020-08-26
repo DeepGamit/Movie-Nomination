@@ -1,19 +1,37 @@
+body,html{
+  min-height: 100%;
+  background-color: darkslategray;
+}
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url(/Roboto/Roboto-Regular.ttf);
+}
+
 body{
-  background: #eee;
-  font-family: 'Nunito SemiBold';
+  margin: 0;
+  font-family: RobotoRegular;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-color: darkslategray;
 }
 
 #main h1{
-  color: #444;
+
+  color: #eee;
   text-align: center;
   text-transform: uppercase;
 }
 
 #main{
-  padding: 6em;
-  box-sizing: border-box;
+  padding: 5em;
+  font-family: NotoSansRegular; 
+  background-color: darkslategray;
   width: 100%;
   height: 100%;
+  text-align: center;
 }
 
 .searchContainer {
@@ -31,31 +49,37 @@ body{
 .nominationContainer{
 
     flex: 1;
-    background-color: black;
+    background-color:#F5F5F5;
     padding: 5px 10px;
     margin: 10px;
     width: auto;
-    color:white;
+    color:black;
 
 }
 
-.nominationContainer h4 {
-  text-align: justify;
+.nominationContainer h3 {
   padding: 10px 30px
+}
+
+li {
+  font-size: medium;
+}
+
+.nominationContainer p {
+  font-size: large;
 }
 
 
 .resultContainer{
     padding: 5px 10px;
-    background-color: black;
+    background-color: #505050;
     flex: 1;
     margin: 10px;
     width: auto;
     color:white;
 }
 
-.resultContainer h4 {
-  text-align: justify;
+.resultContainer h3 {
   padding: 10px 30px
 }
 
@@ -77,5 +101,19 @@ body{
 .message{
   padding-top: 1em;
   text-align: center;
-  color: red;
+  color: whitesmoke;
+}
+
+.displayMovie {
+  display: flex;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+
+.displayNomination {
+  display: flex;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
 }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import {InputGroup ,FormControl, Form } from 'react-bootstrap';
+import {InputGroup ,FormControl, Form, Alert} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import DisplayMovies from './DisplayMovies';
 import axios from 'axios';
 import Loading from '../loading.gif'
+import { connect } from 'react-redux';
+import DisplayNominations from './DisplayNominations';
 
 class SearchBar extends Component{
 
@@ -92,12 +94,14 @@ class SearchBar extends Component{
 
             return(
                 <div className="resultContainer">
-                    <h4 style={{}}>Results for "{keyword}"</h4>
+                    <h3>Results for "{keyword}"</h3>
                     <ul>
                     {
                         movies.map(movie => {
                             return(
-                                <DisplayMovies movie={movie}/>
+                                <React.Fragment key={movie.imdbID}>
+                                    <DisplayMovies movie={movie}/>
+                                </React.Fragment>
                             )
                         })
                     }
@@ -117,11 +121,39 @@ class SearchBar extends Component{
 
     }
 
+    renderNomination = () =>{
+        const { nominations } = this.props.pageState
+        if(nominations !== undefined){
+            return(
+                <div>
+                    <ul>
+                        {nominations.map( movie =>{
+                            return(
+                                <React.Fragment key={movie.imdbID}>
+                                    <DisplayNominations movie={movie}/>
+                                </React.Fragment>
+                            )
+                        })}
+                    </ul>
+                </div>
+            )
+        }
+    }
+
+
     render(){
 
         return (
             <div>
                 <div className="searchContainer">
+                {
+                    this.props.pageState.nominations.length >= 5 &&
+                    <Alert variant="warning">
+                        <Alert.Heading>Alert Banner</Alert.Heading>
+                        <p>You have nominated 5 Movies</p>
+                    </Alert>
+                }
+
                 <Form onSubmit={this.handleOnSubmit}>
                     <InputGroup className="mb-4">
                         <InputGroup.Prepend>
@@ -141,14 +173,21 @@ class SearchBar extends Component{
 
                     <div className="nominationContainer">
 
-                        <h4>Nominations</h4>
+                        <h3>Your Nomination List</h3>
                         {
                         
-                            // !(this.props.mainPageState.nominations.length) ? (
-                            //     <p>No nominations added. Please search for a movie and add them.</p>
-                            // ):(
-                            //     this.renderNominations()
-                            // )
+                            !(this.props.pageState.nominations.length) ? (
+
+                                <div>
+
+                                  <p>No movies added.</p> 
+                                  <p>Please search for the movie and add to your nomination list</p>
+
+                                </div>
+                                
+                            ):(
+                                this.renderNomination()
+                            )
                         }
                     
                     </div>
@@ -170,5 +209,8 @@ class SearchBar extends Component{
     }
 }
 
-export default SearchBar;
+const mapStateToProps = (state) => ({
+    pageState: state.pageState
+});
 
+export default connect(mapStateToProps)(SearchBar)
