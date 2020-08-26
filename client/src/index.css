@@ -1,0 +1,81 @@
+body{
+  background: #eee;
+  font-family: 'Nunito SemiBold';
+}
+
+#main h1{
+  color: #444;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#main{
+  padding: 6em;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.searchContainer {
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding-top: 3em;
+}
+
+.comboContainer{
+  display: flex;
+}
+
+.nominationContainer{
+
+    flex: 1;
+    background-color: black;
+    padding: 5px 10px;
+    margin: 10px;
+    width: auto;
+    color:white;
+
+}
+
+.nominationContainer h4 {
+  text-align: justify;
+  padding: 10px 30px
+}
+
+
+.resultContainer{
+    padding: 5px 10px;
+    background-color: black;
+    flex: 1;
+    margin: 10px;
+    width: auto;
+    color:white;
+}
+
+.resultContainer h4 {
+  text-align: justify;
+  padding: 10px 30px
+}
+
+.loading {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.show {
+	display: inline-block;
+}
+
+.hide {
+	display: none;
+}
+
+.message{
+  padding-top: 1em;
+  text-align: center;
+  color: red;
+}
